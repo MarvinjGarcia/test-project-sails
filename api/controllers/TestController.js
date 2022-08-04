@@ -12,12 +12,15 @@ module.exports = {
         return res.status(200).json(users);
     },
 
-    async postLastName(req, res) {
-        const lastname = req.body.lastname;
-        if (!lastname) {
-            return res.send('Error: Apellido no definido')
-        }
-        return res.send('POST => Apellido: '+lastname);
+    async postUser(req, res) {
+        const name = req.body.name;
+        const email = req.body.email;
+        let newUser = await User.create({
+            name: name,
+            email: email
+        });
+        console.log('Usuario '+name+ ' creado!')
+        return res.ok();
     },
 
     async putName(req, res) {

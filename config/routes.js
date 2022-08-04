@@ -23,7 +23,7 @@ module.exports.routes = {
 
   '/': { view: 'pages/homepage' },
   'GET /testing/getUsers': 'TestController.getUsers',
-  'POST /testing/postLastName': 'TestController.postLastName',
+  'POST /testing/postUser': 'TestController.postUser',
   'PUT /testing/putName/:name': 'TestController.putName'
 
   /***************************************************************************
