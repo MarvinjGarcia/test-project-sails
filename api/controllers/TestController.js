@@ -5,13 +5,11 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
+
 module.exports = {
-    async getName(req, res) {
-        const name = req.query.name;
-        if (!name) {
-            return res.send('Error: Nombre no definido')
-        }
-        return res.send('GET => Nombre: '+name);
+    async getUsers(req, res) {
+        const users = await User.find();
+        return res.status(200).json(users);
     },
 
     async postLastName(req, res) {
