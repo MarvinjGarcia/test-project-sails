@@ -15,12 +15,15 @@ module.exports = {
     async postUser(req, res) {
         const name = req.body.name;
         const email = req.body.email;
-        let newUser = await User.create({
+        await User.create({
             name: name,
             email: email
         });
-        console.log('Usuario '+name+ ' creado!')
-        return res.ok();
+        let newUser = await User.findOne({name: name, email: email});
+        if (!newUser) {
+            return res.notFound();
+        }
+        return res.json(newUser);
     },
 
     async putName(req, res) {
