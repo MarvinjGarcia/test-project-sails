@@ -7,14 +7,19 @@
 
 
 module.exports = {
+    //Obtener todos los usuarios de la BD
     async getUsers(req, res) {
         const users = await User.find();
         return res.status(200).json(users);
     },
 
+    //Agregar un nuevo usuario a la BD 
     async postUser(req, res) {
         const name = req.body.name;
         const email = req.body.email;
+        if(!name || !email){
+            return res.notFound();
+        }
         await User.create({
             name: name,
             email: email
@@ -26,10 +31,14 @@ module.exports = {
         return res.json(newUser);
     },
 
+    //Editar usuario en la BD
     async putUser(req, res) {
         const id = req.params.id
         const updatedName = req.body.name;
         const updatedEmail = req.body.email;
+        if(!id || !updatedName || !updatedEmail){
+            return res.notFound();
+        }
         await User.update({id: id})
             .set({
                 name: updatedName,
