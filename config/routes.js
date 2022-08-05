@@ -24,7 +24,7 @@ module.exports.routes = {
   '/': { view: 'pages/homepage' },
   'GET /testing/getUsers': 'TestController.getUsers',
   'POST /testing/postUser': 'TestController.postUser',
-  'PUT /testing/putName/:name': 'TestController.putName'
+  'PUT /testing/putUser/:id': 'TestController.putUser'
 
   /***************************************************************************
   *                                                                          *

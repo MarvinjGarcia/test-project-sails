@@ -26,12 +26,17 @@ module.exports = {
         return res.json(newUser);
     },
 
-    async putName(req, res) {
-        const name = req.params.name;
-        if(!name){
-            return res.send('Error');
-        }
-        return res.send('PUT => Nombre: '+ name);
+    async putUser(req, res) {
+        const id = req.params.id
+        const updatedName = req.body.name;
+        const updatedEmail = req.body.email;
+        await User.update({id: id})
+            .set({
+                name: updatedName,
+                email: updatedEmail
+            });
+        let updatedUser = await User.findOne({name: updatedName, email: updatedEmail});
+        return res.json(updatedUser);
     }
 };
 
