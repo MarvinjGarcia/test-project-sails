@@ -23,6 +23,7 @@ module.exports.routes = {
 
   '/': { view: 'pages/homepage' },
   'GET /testing/getUsers': 'TestController.getUsers',
+  'GET /testing/getUser/:id': 'TestController.getUser',
   'POST /testing/postUser': 'TestController.postUser',
   'PUT /testing/putUser/:id': 'TestController.putUser'
 

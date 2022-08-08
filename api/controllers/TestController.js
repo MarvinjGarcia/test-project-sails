@@ -13,6 +13,16 @@ module.exports = {
         return res.status(200).json(users);
     },
 
+    //Buscar un Usuario en la BD
+    async getUser(req, res) {
+        const id = req.params.id;
+        const user = await User.findOne({id: id});
+        if (!user) {
+            return res.send('Error: El usuario con id "'+id+'" no existe');
+        }
+        return res.json(user);
+    },
+
     //Agregar un nuevo usuario a la BD 
     async postUser(req, res) {
         const name = req.body.name;
@@ -47,7 +57,5 @@ module.exports = {
         let updatedUser = await User.findOne({name: updatedName, email: updatedEmail});
         return res.json(updatedUser);
     }
-
-    
 };
 
