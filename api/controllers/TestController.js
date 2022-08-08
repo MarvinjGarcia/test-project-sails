@@ -18,7 +18,7 @@ module.exports = {
         const name = req.body.name;
         const email = req.body.email;
         if(!name || !email){
-            return res.notFound();
+            return res.send('Error: Nombre o Email no definidos');
         }
         await User.create({
             name: name,
@@ -36,8 +36,8 @@ module.exports = {
         const id = req.params.id
         const updatedName = req.body.name;
         const updatedEmail = req.body.email;
-        if(!id || !updatedName || !updatedEmail){
-            return res.notFound();
+        if(!id){
+            return res.send('Error: Id no definido!');
         }
         await User.update({id: id})
             .set({
@@ -47,5 +47,7 @@ module.exports = {
         let updatedUser = await User.findOne({name: updatedName, email: updatedEmail});
         return res.json(updatedUser);
     }
+
+    
 };
 
