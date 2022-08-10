@@ -25,11 +25,11 @@ beforeAll((done) => {
             }
             return done();
         });
-});
+}, 10000);
 
 afterAll(done => {
     sails.lower(done);
-});
+}, 10000);
 
 it('should ok', () => {
     expect(0).toBe(0);
